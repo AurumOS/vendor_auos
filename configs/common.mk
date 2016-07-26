@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= aokp
+PRODUCT_BRAND ?= au
 
 SUPERUSER_EMBEDDED := true
 
@@ -12,7 +12,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
 # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,, $(shell ls vendor/aokp/prebuilt/bootanimation))
+bootanimation_sizes := $(subst .zip,, $(shell ls vendor/au/prebuilt/bootanimation))
 bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
 
 # find the appropriate size and set
@@ -29,14 +29,14 @@ endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
 ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
-PRODUCT_BOOTANIMATION := vendor/aokp/prebuilt/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/au/prebuilt/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
 else
-PRODUCT_BOOTANIMATION := vendor/aokp/prebuilt/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/au/prebuilt/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 endif
 endif
 
 # Common dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/au/overlay/dictionaries
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
@@ -72,50 +72,50 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/aokp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/aokp/prebuilt/common/bin/50-aokp.sh:system/addon.d/50-aokp.sh \
-    vendor/aokp/prebuilt/common/bin/blacklist:system/addon.d/blacklist \
-    vendor/aokp/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
-    vendor/aokp/prebuilt/common/etc/backup.conf:system/etc/backup.conf
+    vendor/au/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/au/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/au/prebuilt/common/bin/50-au.sh:system/addon.d/50-au.sh \
+    vendor/au/prebuilt/common/bin/blacklist:system/addon.d/blacklist \
+    vendor/au/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
+    vendor/au/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/au/configs/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+    vendor/au/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.d/00start:system/etc/init.d/00start \
-    vendor/aokp/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-    vendor/aokp/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
-    vendor/aokp/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/au/prebuilt/common/etc/init.d/00start:system/etc/init.d/00start \
+    vendor/au/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+    vendor/au/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
+    vendor/au/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # userinit support
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/au/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# AOKP-specific init file
+# aurum-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.local.rc:root/init.aokp.rc \
+    vendor/au/prebuilt/common/etc/init.local.rc:root/init.au.rc \
 
 # Installer
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/persist.sh:install/bin/persist.sh \
-    vendor/aokp/prebuilt/common/etc/persist.conf:system/etc/persist.conf
+    vendor/au/prebuilt/common/bin/persist.sh:install/bin/persist.sh \
+    vendor/au/prebuilt/common/etc/persist.conf:system/etc/persist.conf
 
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/lib/libmicrobes_jni.so:system/lib/libmicrobes_jni.so \
-    vendor/aokp/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
+    vendor/au/prebuilt/common/lib/libmicrobes_jni.so:system/lib/libmicrobes_jni.so \
+    vendor/au/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/au/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -126,15 +126,15 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/com.aokp.android.xml:system/etc/permissions/com.aokp.android.xml
+    vendor/au/configs/permissions/com.au.android.xml:system/etc/permissions/com.au.android.xml
 
 # Theme engine
-include vendor/aokp/configs/themes_common.mk
+include vendor/au/configs/themes_common.mk
 
 # CMSDK
-include vendor/aokp/configs/cmsdk_common.mk
+include vendor/au/configs/cmsdk_common.mk
 
-# Required AOKP packages
+# Required aurumOS packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
     CellBroadcastReceiver \
@@ -147,7 +147,7 @@ PRODUCT_PACKAGES += \
     ROMControl \
     Stk
 
-# Optional AOKP packages
+# Optional aurumOS packages
 PRODUCT_PACKAGES += \
     libemoji \
     Terminal
@@ -238,7 +238,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=3
 
 # Common overlay
-DEVICE_PACKAGE_OVERLAYS += vendor/aokp/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/au/overlay/common
 
 PRODUCT_VERSION_MAJOR = 13
 PRODUCT_VERSION_MINOR = 0
@@ -247,35 +247,35 @@ PRODUCT_VERSION_MAINTENANCE = 0-RC0
 # Version information used on all builds
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_VERSION_TAGS=release-keys USER=android-build BUILD_UTC_DATE=$(shell date +"%s")
 
-DATE = $(shell vendor/aokp/tools/getdate)
-AOKP_BRANCH=mm
+DATE = $(shell vendor/au/tools/getdate)
+AU_BRANCH=mm
 
-ifneq ($(AOKP_BUILD),)
-    # AOKP_BUILD=<goo version int>/<build string>
+ifneq ($(AU_BUILD),)
+    # AU_BUILD=<goo version int>/<build string>
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.goo.developerid=aokp \
-        ro.goo.rom=aokp \
-        ro.goo.version=$(shell echo $(AOKP_BUILD) | cut -d/ -f1)
+        ro.goo.developerid=au \
+        ro.goo.rom=au \
+        ro.goo.version=$(shell echo $(AU_BUILD) | cut -d/ -f1)
 
-    AOKP_VERSION=$(TARGET_PRODUCT)_$(AOKP_BRANCH)_$(shell echo $(AOKP_BUILD) | cut -d/ -f2)
+    AU_VERSION=$(TARGET_PRODUCT)_$(AU_BRANCH)_$(shell echo $(AU_BUILD) | cut -d/ -f2)
 else
-    ifeq ($(AOKP_BUILDTYPE),)
-        # AOKP_BUILDTYPE not defined
-	AOKP_BUILDTYPE := unofficial
+    ifeq ($(AU_BUILDTYPE),)
+        # AU_BUILDTYPE not defined
+	AU_BUILDTYPE := alpha 
     endif
 
-    AOKP_VERSION=$(TARGET_PRODUCT)_$(AOKP_BRANCH)_$(AOKP_BUILDTYPE)_$(DATE)
+    AU_VERSION=$(TARGET_PRODUCT)_$(AU_BRANCH)_$(AU_BUILDTYPE)_$(DATE)
 endif
 
-AOKP_DISPLAY_VERSION := $(AOKP_VERSION)
+AU_DISPLAY_VERSION := $(AU_VERSION)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.aokp.version=$(AOKP_VERSION) \
-    ro.aokp.branch=$(AOKP_BRANCH) \
-    ro.aokp.device=$(AOKP_DEVICE) \
-    ro.aokp.releasetype=$(AOKP_BUILDTYPE) \
-    ro.modversion=$(AOKP_VERSION) \
-    ro.aokp.display.version=$(AOKP_DISPLAY_VERSION)
+    ro.au.version=$(AU_VERSION) \
+    ro.au.branch=$(AU_BRANCH) \
+    ro.au.device=$(AU_DEVICE) \
+    ro.au.releasetype=$(AU_BUILDTYPE) \
+    ro.modversion=$(AU_VERSION) \
+    ro.au.display.version=$(AU_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 

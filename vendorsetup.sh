@@ -1,4 +1,4 @@
-for device in $(cat vendor/aokp/aokp.devices)
+for device in $(cat vendor/au/au.devices)
 do
-add_lunch_combo aokp_$device-userdebug
+add_lunch_combo au_$device-userdebug
 done

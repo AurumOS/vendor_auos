@@ -1,3 +1,3 @@
-# This device supports AOKP enhanced NFC
+# This device supports Aurum enhanced NFC
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/com.aokp.nfc.enhanced.xml:system/etc/permissions/com.aokp.nfc.enhanced.xml
+    vendor/au/configs/permissions/com.au.nfc.enhanced.xml:system/etc/permissions/com.au.nfc.enhanced.xml

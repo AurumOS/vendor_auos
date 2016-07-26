@@ -1,10 +1,10 @@
 # Inherit common CM stuff
-$(call inherit-product, vendor/aokp/configs/common.mk)
+$(call inherit-product, vendor/au/configs/common.mk)
 
 PRODUCT_SIZE := mini
 
 # Include CM audio files
-include vendor/aokp/configs/cm_audio.mk
+include vendor/au/configs/cm_audio.mk
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \

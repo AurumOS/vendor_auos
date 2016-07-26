@@ -1,5 +1,5 @@
-# Inherit common AOKP stuff
-$(call inherit-product, vendor/aokp/configs/common_full.mk)
+# Inherit common Au stuff
+$(call inherit-product, vendor/au/configs/common_full.mk)
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \

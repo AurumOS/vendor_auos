@@ -1,5 +1,5 @@
-# Inherit common AOKP stuff
-$(call inherit-product, vendor/aokp/configs/common.mk)
+# Inherit common Au stuff
+$(call inherit-product, vendor/au/configs/common.mk)
 
 # Bring in all video files
 $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
@@ -7,12 +7,12 @@ $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 PRODUCT_SIZE := full
 
 # Include CM audio files
-include vendor/aokp/configs/cm_audio.mk
+include vendor/au/configs/cm_audio.mk
 
-# Include AOKP LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
+# Include Au LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/au/overlay/dictionaries
 
-# Optional AOKP packages
+# Optional Au packages
 PRODUCT_PACKAGES += \
     CMSettingsProvider \
     Galaxy4 \
@@ -35,7 +35,7 @@ PRODUCT_PACKAGES += \
     libvideoeditor_videofilters \
     libvideoeditorplayer
 
-# Extra tools in AOKP
+# Extra tools in Au
 PRODUCT_PACKAGES += \
     7z \
     lib7z \

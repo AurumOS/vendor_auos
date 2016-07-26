@@ -1,7 +1,7 @@
 #
 # This policy configuration will be used by all products that
-# inherit from AOKP
+# inherit from Au
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/aokp/sepolicy
+    vendor/au/sepolicy
